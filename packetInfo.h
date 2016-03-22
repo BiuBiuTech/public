@@ -301,6 +301,30 @@ private:
 	mw_base::Bitset<PLAYER_ATTR_TIME_COUNT>	__optional_flag__time;
 };
 
+class PacketSyncPlayerCard
+{
+public:
+	const int & getCard(const int index) const {return m_cards[index];}
+	bool	isSetCard(const int id) {return __optional_flag__card[id];}
+	void	setCard(const int index, const int &value) {m_cards[index] = value; __optional_flag__card.set(index);}
+
+	static const int ID = PACKET_S2C_SYNC_PLAYER_CARD;
+
+	template<typename T>
+	void map(T & s)
+	{
+		s << __optional_flag__card;
+		for (int i = 0; i < m_cards.capacity(); ++i)
+		{
+			if (__optional_flag__card[i])
+				s << m_cards[i];
+		}
+	}
+private:
+	mw_base::array<int, CARDS_COUNT>	m_cards;
+	mw_base::Bitset<CARDS_COUNT>		__optional_flag__card;
+};
+
 class PacketSyncExtra
 {
 public:

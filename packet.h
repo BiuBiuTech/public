@@ -208,6 +208,7 @@ namespace tech
 		PACKET_C2S_REPLACE_CARD,				//REPLACE
 		PACKET_C2S_SET_FIGHT_CARD,				//上场
 		PACKET_C2S_SETTING_CARD,				//设置属性。
+		PACKET_S2C_SYNC_PLAYER_CARD,			//发送玩家存储的上场英雄的ids;
 
 		PACKET_COUNT,
 	};
